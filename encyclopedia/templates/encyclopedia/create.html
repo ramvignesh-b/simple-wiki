@@ -1,0 +1,26 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Create a New Page
+{% endblock %}
+
+{% block body %}
+<div>
+<form method="POST" action="/create">
+    {% csrf_token %}
+    {%for field in form %}
+    <br/>
+    <div class="sans">
+        {{ field.label }}
+    </div>
+    
+    <div class="control-group {%if field.errors %}alert-danger{%endif%}">
+         {{ field.errors }}  
+    </div>
+    {{ field }}
+    {% endfor %}
+    <br/>
+    <input class="btnSubmit" type="submit" value="Create"/>
+</form>
+</div>
+{% endblock %}
